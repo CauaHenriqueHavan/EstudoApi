@@ -1,6 +1,4 @@
-﻿using estudo.domain.Entities;
-
-namespace estudo.domain.DTO_s
+﻿namespace estudo.domain.DTO_s
 {
     public class ClienteOutputModel
     {
