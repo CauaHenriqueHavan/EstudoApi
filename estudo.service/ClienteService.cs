@@ -18,7 +18,7 @@ namespace estudo.service
         public Task<ClienteOutputModel> BuscarClientesIdAsync(short id)
             => _clienteRepository.BuscarClientesIdAsync(id);
 
-        public Task<bool> CriarClienteAsync(ClienteInputModel model)
+        public Task<bool> CriarClienteAsync(CadastrarClienteInputModel model)
             => _clienteRepository.CriarClienteAsync(model);
     }
 }
