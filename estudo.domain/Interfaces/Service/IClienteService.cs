@@ -5,7 +5,7 @@ namespace estudo.domain.Interfaces.Service
 {
     public interface IClienteService
     {
-        Task<bool> CriarClienteAsync(ClienteInputModel model);
+        Task<bool> CriarClienteAsync(CadastrarClienteInputModel model);
         Task<List<ClienteOutputModel>> BuscarClientesAsync();
         Task<ClienteOutputModel> BuscarClientesIdAsync(short id);
     }

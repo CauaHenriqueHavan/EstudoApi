@@ -1,7 +1,7 @@
 ﻿using estudo.domain.Interfaces.Repository;
 using estudo.domain.Interfaces.Service;
 using estudo.infra.Repository;
-using Havan.DadosMestre.Domain.DTOs.Config;
+using estudo.service;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,20 +9,25 @@ namespace estudo.infraCrossCuting
 {
     public static class CrossDependency
     {
-            public static IServiceCollection ConfiguringDependencyInjection(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection SetupDepencencyInjection(this IServiceCollection services, IConfiguration configuration)
             {
-                services.ConfiguringRepositories();
-                services.ConfiguringServices();
+            services.ConfigureServices()
+                    .ConfiguringRepositories();
+
+            return services;
+            }
+        public static IServiceCollection ConfigureServices(this IServiceCollection services)
+            {
+                services.AddTransient<IClienteService, ClienteService>();
+
+                return services;
             }
 
-            private static void ConfiguringRepositories(this IServiceCollection services)
+        public static IServiceCollection ConfiguringRepositories(this IServiceCollection services)
             {
-                services.AddScoped<IClienteRepository, ClienteRepository>();
-            }
+                services.AddTransient<IClienteRepository, ClienteRepository>();
 
-            private static void ConfiguringServices(this IServiceCollection services)
-            {
-                services.AddTransient<IClienteService, IClienteService>();
+                return services;
             }
     }
 }

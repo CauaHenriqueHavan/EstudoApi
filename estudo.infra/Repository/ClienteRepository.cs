@@ -38,7 +38,7 @@ namespace estudo.infra.Repository
                             })
                             .FirstOrDefaultAsync();
 
-        public async Task<bool> CriarClienteAsync(ClienteInputModel model)
+        public async Task<bool> CriarClienteAsync(CadastrarClienteInputModel model)
         {
             var context = _context.Cliente;
 
