@@ -1,5 +1,6 @@
 ﻿using estudo.domain.Auxiliar;
 using estudo.domain.DTO_s.InputModels;
+using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
 using estudo.domain.Interfaces.Service;
 using estudo.infra.Context;

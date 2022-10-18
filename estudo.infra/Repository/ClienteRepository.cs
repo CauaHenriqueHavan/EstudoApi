@@ -18,8 +18,8 @@ namespace estudo.infra.Repository
         public async Task<List<ClienteOutputModel>> BuscarClientesAsync()
             => await _context.Cliente.Select(x => new ClienteOutputModel
             {
+                Id = x.Id,
                 Cpf = x.Cpf,
-                DataCriação = DateTime.Now,
                 DataNascimento = x.DataNascimento,
                 Nome = x.Nome,
                 Sobrenome = x.Sobrenome,
@@ -32,8 +32,8 @@ namespace estudo.infra.Repository
                             .Where(x => x.Id == id)
                             .Select(x => new ClienteOutputModel
                             {
+                                Id = x.Id,
                                 Cpf = x.Cpf,
-                                DataCriação = DateTime.Now,
                                 DataNascimento = x.DataNascimento,
                                 Nome = x.Nome,
                                 Sobrenome = x.Sobrenome,
@@ -41,22 +41,24 @@ namespace estudo.infra.Repository
                             })
                             .FirstOrDefaultAsync();
 
-        public async Task<bool> CriarClienteAsync(CadastrarClienteInputModel model)
+        public async Task<ClienteEntity> CriarClienteAsync(CadastrarClienteInputModel model)
         {
             var context = _context.Cliente;
 
             var clienteExiste = context.Where(x => x.Cpf.Contains(model.Cpf.ToLower())).FirstOrDefault();
 
             if (clienteExiste is not null)
-                return false;
+                return null;
 
             var id = context.Select(x => x.Id).Count() + 1;
 
-            await context.AddAsync(new ClienteEntity((short)id, model.Nome, model.Sobrenome, model.DataNascimento, model.Cpf, SituacaoEnum.Ativo));
+            var result = new ClienteEntity((short)id, model.Nome, model.Sobrenome, model.DataNascimento, model.Cpf, SituacaoEnum.Ativo);
+
+            await context.AddAsync(result);
 
             await _context.SaveChangesAsync();
 
-            return true;
+            return result;
         }
 
         public async Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
