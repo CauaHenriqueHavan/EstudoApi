@@ -1,5 +1,6 @@
 ﻿using estudo.domain.Interfaces.Repository;
 using estudo.domain.Interfaces.Service;
+using estudo.infra.Auxiliares;
 using estudo.infra.Repository;
 using estudo.service;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ namespace estudo.infraCrossCuting
             {
             services.ConfigureServices()
                     .ConfiguringRepositories();
+            services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
             return services;
             }
