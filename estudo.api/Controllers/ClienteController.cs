@@ -1,6 +1,8 @@
 ﻿using estudo.api.Auxiliares;
 using estudo.domain.Auxiliar;
+using estudo.domain.DTO_s;
 using estudo.domain.DTO_s.InputModels;
+using estudo.domain.DTO_s.OutPutModelAuxiliar;
 using estudo.domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -27,9 +29,9 @@ namespace estudo.api.Controllers
             => Response(await _clienteService.CriarClienteAsync(model));
 
         [HttpGet]
-        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
-        public async Task<IActionResult> BuscarClientesAsync()
-            => Response(await _clienteService.BuscarClientesAsync());
+        [ProducesResponseType(typeof(ResultViewModel<PaginadoOutputModel<ClienteOutputModel>>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> BuscarClientesAsync([FromQuery] BuscarClientesInputModel model)
+            => Response(await _clienteService.BuscarClientesAsync(model));
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
