@@ -1,4 +1,5 @@
-﻿using estudo.domain.Enums;
+﻿using estudo.domain.DTO_s;
+using estudo.domain.Enums;
 
 namespace estudo.domain.Entities
 {
@@ -20,6 +21,14 @@ namespace estudo.domain.Entities
             DataNascimento = dataNascimento;
             Cpf = cpf;
             Situacao = situacao;
+        }
+
+        public ClienteEntity AlterarCadastro(string nome, string sobrenome)
+        {
+            Nome = nome;
+            Sobrenome = sobrenome;
+
+            return this;
         }
     }
 }

@@ -8,5 +8,6 @@ namespace estudo.domain.Interfaces.Repository
         Task<bool> CriarClienteAsync(CadastrarClienteInputModel model);
         Task<List<ClienteOutputModel>> BuscarClientesAsync();
         Task<ClienteOutputModel> BuscarClientesIdAsync(short id);
+        Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model);
     }
 }

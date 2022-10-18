@@ -21,6 +21,8 @@ namespace estudo.service
         public async Task<bool> CriarClienteAsync(CadastrarClienteInputModel model)
             => await _clienteRepository.CriarClienteAsync(model);
 
+        public async Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
+            => await _clienteRepository.AlterarCadastroClienteAsync(model);
 
     }
 }

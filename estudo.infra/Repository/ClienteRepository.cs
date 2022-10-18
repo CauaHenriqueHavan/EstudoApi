@@ -1,6 +1,7 @@
 ﻿using estudo.domain.DTO_s;
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.Entities;
+using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
 using estudo.infra.Context;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,8 @@ namespace estudo.infra.Repository
                 DataCriação = DateTime.Now,
                 DataNascimento = x.DataNascimento,
                 Nome = x.Nome,
-                Sobrenome = x.Sobrenome
+                Sobrenome = x.Sobrenome,
+                Situacao = x.Situacao
             })
             .ToListAsync();
 
@@ -34,7 +36,8 @@ namespace estudo.infra.Repository
                                 DataCriação = DateTime.Now,
                                 DataNascimento = x.DataNascimento,
                                 Nome = x.Nome,
-                                Sobrenome = x.Sobrenome
+                                Sobrenome = x.Sobrenome,
+                                Situacao = x.Situacao
                             })
                             .FirstOrDefaultAsync();
 
@@ -49,7 +52,23 @@ namespace estudo.infra.Repository
 
             var id = context.Select(x => x.Id).Count() + 1;
 
-            await context.AddAsync(new ClienteEntity((short)id, model.Nome, model.Sobrenome, model.DataNascimento, model.Cpf));
+            await context.AddAsync(new ClienteEntity((short)id, model.Nome, model.Sobrenome, model.DataNascimento, model.Cpf, SituacaoEnum.Ativo));
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
+        {
+            var context = _context.Cliente;
+
+            var cliente = await context.Where(x => x.Cpf == model.Cpf).FirstOrDefaultAsync();
+
+            if (cliente is null)
+                return false;
+
+            cliente.AlterarCadastro(model.Nome, model.Sobrenome);
 
             await _context.SaveChangesAsync();
 
