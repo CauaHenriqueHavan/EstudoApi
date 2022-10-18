@@ -10,12 +10,9 @@ namespace estudo.domain.Common
     {
         public async Task GravarLogAsync(short id, TipoEventoEnum tipoEvento)
         {
-            if (id > 0)
-            {
                 LogRequestModel request = new( id, tipoEvento);
                 string message = JsonConvert.SerializeObject(request);
                 EnviarRabbitMq(message);
-            }
         }
 
         public static void EnviarRabbitMq(string log)
