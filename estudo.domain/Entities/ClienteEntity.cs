@@ -1,4 +1,6 @@
-﻿namespace estudo.domain.Entities
+﻿using estudo.domain.Enums;
+
+namespace estudo.domain.Entities
 {
     public class ClienteEntity
     {
@@ -8,14 +10,16 @@
         public string Sobrenome { get; private set; }
         public DateTime DataNascimento { get; private set; }
         public string Cpf { get; private set; }
+        public SituacaoEnum Situacao { get; private set; }
 
-        public ClienteEntity(short id, string nome, string sobrenome, DateTime dataNascimento, string cpf)
+        public ClienteEntity(short id, string nome, string sobrenome, DateTime dataNascimento, string cpf, SituacaoEnum situacao)
         {
             Id = id;
             Nome = nome;
             Sobrenome = sobrenome;
             DataNascimento = dataNascimento;
             Cpf = cpf;
+            Situacao = situacao;
         }
     }
 }
