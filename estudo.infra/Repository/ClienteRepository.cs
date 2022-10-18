@@ -75,7 +75,7 @@ namespace estudo.infra.Repository
             return true;
         }
 
-        public async Task<ClienteEntity> BuscarClientesSituacaoIdAsync(short id)
+        public async Task<ClienteEntity> AlterarSituacaoClientesAsync(short id)
         {
             var teste = _context.Cliente;
 
