@@ -4,6 +4,8 @@ using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
 using estudo.domain.Interfaces.Service;
 using estudo.infra.Context;
+using estudo.service.Events.Notification;
+using MediatR;
 
 namespace estudo.service
 {
@@ -11,13 +13,15 @@ namespace estudo.service
     {
         private readonly IClienteRepository _clienteRepository;
         private readonly IUnitOfWork<AppDbContext> _uow;
+        private readonly IMediator _mediator;
 
-        public ClienteService(IClienteRepository clienteRepository, IUnitOfWork<AppDbContext> uow)
+        public ClienteService(IClienteRepository clienteRepository, IUnitOfWork<AppDbContext> uow, IMediator mediator)
         {
-             _clienteRepository = clienteRepository;
+            _clienteRepository = clienteRepository;
             _uow = uow;
+            _mediator = mediator;
         }
-            
+
 
         public async Task<ResultViewBaseModel> BuscarClientesAsync()
             => AddResult(await _clienteRepository.BuscarClientesAsync());
@@ -26,7 +30,20 @@ namespace estudo.service
             => AddResult(await _clienteRepository.BuscarClientesIdAsync(id));
 
         public async Task<ResultViewBaseModel> CriarClienteAsync(CadastrarClienteInputModel model)
-            => AddResult(await _clienteRepository.CriarClienteAsync(model));
+        {
+           var cliente = await _clienteRepository.CriarClienteAsync(model);
+
+            if (cliente != null)
+            {
+               await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.UsuarioCriado));
+
+                return AddResult(ResourceService.ClienteCriado);
+                
+            }
+
+            return AddErros(ResourceService.ErroCriarCliente);
+        }
+        
 
         public async Task<ResultViewBaseModel> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
         {
@@ -35,6 +52,8 @@ namespace estudo.service
                 return AddErros(ResourceService.ClienteNaoEncontrado);
 
             await _uow.CommitAsync();
+
+            await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.AlteradoUsuario));
 
             return AddResult(true);
         }
@@ -51,6 +70,8 @@ namespace estudo.service
                 return AddErros(ResourceService.ClienteNaoEncontrado);
 
             await _uow.CommitAsync();
+
+            await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.AlteradoUsuario));
 
             return AddResult(true);
         }
