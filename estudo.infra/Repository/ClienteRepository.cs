@@ -18,8 +18,8 @@ namespace estudo.infra.Repository
         public async Task<List<ClienteOutputModel>> BuscarClientesAsync()
             => await _context.Cliente.Select(x => new ClienteOutputModel
             {
+                Id = x.Id,
                 Cpf = x.Cpf,
-                DataCriação = DateTime.Now,
                 DataNascimento = x.DataNascimento,
                 Nome = x.Nome,
                 Sobrenome = x.Sobrenome,
@@ -32,8 +32,8 @@ namespace estudo.infra.Repository
                             .Where(x => x.Id == id)
                             .Select(x => new ClienteOutputModel
                             {
+                                Id = x.Id,
                                 Cpf = x.Cpf,
-                                DataCriação = DateTime.Now,
                                 DataNascimento = x.DataNascimento,
                                 Nome = x.Nome,
                                 Sobrenome = x.Sobrenome,

@@ -2,9 +2,12 @@ using estudo.infra.Context;
 using estudo.infraCrossCuting;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Events;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 
 // Add services to the container.
@@ -14,7 +17,8 @@ builder.Services.AddControllers().AddFluentValidation(
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data source=local.db"));
-
+builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().WriteTo.File("Logs/arquivo.txt", rollingInterval : RollingInterval.Day).CreateLogger());
+builder.Logging.ClearProviders();
 
 var services = builder.Services;
 var configuration = builder.Configuration;
@@ -32,6 +36,7 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 

@@ -12,14 +12,21 @@ namespace estudo.api.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly IClienteService _clienteService;
+        private readonly ILogger<ClienteController> _logger;
 
-        public ClienteController(IClienteService clienteService)
-            => _clienteService = clienteService;
+        public ClienteController(IClienteService clienteService, ILogger<ClienteController> logger)
+        {
+            _clienteService = clienteService;
+            _logger = logger;
+        }
 
         [HttpPost]
         public async Task<IActionResult> CriarCliente([FromBody] CadastrarClienteInputModel model)
         {
-            await _clienteService.CriarClienteAsync(model);
+            var result = await _clienteService.CriarClienteAsync(model);
+
+            if (!result)
+                return BadRequest("Não foi possivel criar cadastro!");
 
             return Ok();
         }
