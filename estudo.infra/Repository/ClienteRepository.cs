@@ -86,8 +86,6 @@ namespace estudo.infra.Repository
 
             cliente.AlterarSituacao();
 
-            await _context.SaveChangesAsync();
-
             return cliente;
         }
 
