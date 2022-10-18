@@ -68,9 +68,7 @@ namespace estudo.infra.Repository
             if (cliente is null)
                 return false;
 
-            cliente.AlterarCadastro(model.Nome, model.Sobrenome);
-
-            await _context.SaveChangesAsync();
+            cliente.AlterarCadastro(model.Nome, model.Sobrenome);;
 
             return true;
         }

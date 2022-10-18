@@ -8,16 +8,26 @@
 
   <ItemGroup>
     <PackageReference Include="Abp" Version="7.4.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.6" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\estudo.domain\estudo.domain.csproj" />
     <ProjectReference Include="..\estudo.infra\estudo.infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ResourceService.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ResourceService.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="ResourceService.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceService.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

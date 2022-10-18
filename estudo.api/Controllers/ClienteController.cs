@@ -1,14 +1,16 @@
-﻿using estudo.domain.DTO_s;
+﻿using estudo.api.Auxiliares;
+using estudo.domain.Auxiliar;
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace estudo.api.Controllers
 {
     [ApiController]
     [Route("api/")]
 
-    public class ClienteController : ControllerBase
+    public class ClienteController : ControllerApi
     {
         private readonly IClienteService _clienteService;
 
@@ -16,42 +18,28 @@ namespace estudo.api.Controllers
             => _clienteService = clienteService;
 
         [HttpPost]
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> CriarCliente([FromBody] CadastrarClienteInputModel model)
-        {
-            await _clienteService.CriarClienteAsync(model);
-
-            return Ok();
-        }
+            => Response(await _clienteService.CriarClienteAsync(model));
 
         [HttpGet]
-        public async Task<List<ClienteOutputModel>> BuscarClientesAsync()
-            => await _clienteService.BuscarClientesAsync();
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> BuscarClientesAsync()
+            => Response(await _clienteService.BuscarClientesAsync());
 
         [HttpGet("{id}")]
-        public async Task<ClienteOutputModel> BuscarClientesIdAsync(short id)
-            => await _clienteService.BuscarClientesIdAsync(id);
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
+        public async Task<IActionResult> BuscarClientesIdAsync(short id)
+            => Response(await _clienteService.BuscarClientesIdAsync(id));
 
         [HttpPut]
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
-        {
-            var result = await _clienteService.AlterarCadastroClienteAsync(model);
-
-            if (!result)
-                return BadRequest(ResourceApi.NaoFoiPossivelAlterarCadastro);
-
-            return Ok(ResourceApi.SituacaoAlteradaComSucesso);
-        }
+            => Response(await _clienteService.AlterarCadastroClienteAsync(model));
 
         [HttpPatch("{id}")]
+        [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> AlterarSituacaoCliente(short id)
-        {
-            var result = await _clienteService.AlterarSituacaoClienteAsync(id);
-
-            if (!result)
-                return BadRequest(ResourceApi.NaoFoiPossivelAlterarCadastro);
-
-            return Ok(ResourceApi.SituacaoAlteradaComSucesso);
-        }
-
+             => Response(await _clienteService.AlterarSituacaoClienteAsync(id));
     }
 }
