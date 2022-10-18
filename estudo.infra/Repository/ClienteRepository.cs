@@ -70,10 +70,22 @@ namespace estudo.infra.Repository
 
             cliente.AlterarCadastro(model.Nome, model.Sobrenome);
 
-            await _context.SaveChangesAsync();
-
             return true;
         }
-    
+
+        public async Task<ClienteEntity> AlterarSituacaoClientesAsync(short id)
+        {
+            var teste = _context.Cliente;
+
+            var cliente =  await teste.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            if (cliente is null)
+                return null;
+
+            cliente.AlterarSituacao();
+
+            return cliente;
+        }
+
     }
 }

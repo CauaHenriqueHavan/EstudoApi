@@ -24,7 +24,7 @@ namespace estudo.api.Validation
 
             RuleFor(x => x.DataNascimento)
                 .Must(x => x <= DateTime.Now)
-                .WithMessage(ResourceApi.DataNascimentoInválida);
+                .WithMessage(ResourceApi.DataNascimentoInvalida);
         }
     }
 }

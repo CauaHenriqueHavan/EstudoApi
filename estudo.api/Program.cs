@@ -25,7 +25,7 @@ var configuration = builder.Configuration;
 
 // Add services to the container.
 services
-    .SetupDepencencyInjection(configuration);
+    .SetupDepencencyInjection();
 
 
 var app = builder.Build();

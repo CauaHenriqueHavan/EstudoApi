@@ -8,8 +8,6 @@ namespace estudo.infra.Context
         public DbSet<ClienteEntity> Cliente { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-            Database.EnsureCreated();
-        }
+            => Database.EnsureCreated();
     }
 }

@@ -2,7 +2,6 @@
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
 
 namespace estudo.api.Controllers
 {
@@ -45,9 +44,21 @@ namespace estudo.api.Controllers
             var result = await _clienteService.AlterarCadastroClienteAsync(model);
 
             if (!result)
-                return BadRequest("Não foi possivel alterar cadastro!");
+                return BadRequest(ResourceApi.NaoFoiPossivelAlterarCadastro);
 
-            return Ok("Alterado com sucesso!");
+            return Ok(ResourceApi.SituacaoAlteradaComSucesso);
         }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> AlterarSituacaoCliente(short id)
+        {
+            var result = await _clienteService.AlterarSituacaoClienteAsync(id);
+
+            if (!result)
+                return BadRequest(ResourceApi.NaoFoiPossivelAlterarCadastro);
+
+            return Ok(ResourceApi.SituacaoAlteradaComSucesso);
+        }
+
     }
 }
