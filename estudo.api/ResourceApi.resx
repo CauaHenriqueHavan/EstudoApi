@@ -126,4 +126,10 @@
   <data name="DataNascimentoInválida" xml:space="preserve">
     <value>Data de nascimento esta inválida!</value>
   </data>
+  <data name="NaoFoiPossivelAlterarCadastro" xml:space="preserve">
+    <value>Não foi possivel alterar cadastro</value>
+  </data>
+  <data name="SituacaoAlteradaComSucesso" xml:space="preserve">
+    <value>Situação Alterada com sucesso !</value>
+  </data>
 </root>

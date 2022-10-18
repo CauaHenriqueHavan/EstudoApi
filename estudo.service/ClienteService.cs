@@ -24,5 +24,14 @@ namespace estudo.service
         public async Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
             => await _clienteRepository.AlterarCadastroClienteAsync(model);
 
+        public async Task<bool> AlterarSituacaoClienteAsync(short id)
+        {
+            if (id <= 0)
+                return false;
+
+            await _clienteRepository.BuscarClientesSituacaoIdAsync(id);
+     
+            return true;
+        }
     }
 }

@@ -74,6 +74,22 @@ namespace estudo.infra.Repository
 
             return true;
         }
-    
+
+        public async Task<ClienteEntity> BuscarClientesSituacaoIdAsync(short id)
+        {
+            var teste = _context.Cliente;
+
+            var cliente =  await teste.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            if (cliente is null)
+                return null;
+
+            cliente.AlterarSituacao();
+
+            await _context.SaveChangesAsync();
+
+            return cliente;
+        }
+
     }
 }

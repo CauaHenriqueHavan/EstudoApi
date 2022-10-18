@@ -1,5 +1,4 @@
-﻿using estudo.domain.DTO_s;
-using estudo.domain.Enums;
+﻿using estudo.domain.Enums;
 
 namespace estudo.domain.Entities
 {
@@ -29,6 +28,12 @@ namespace estudo.domain.Entities
             Sobrenome = sobrenome;
 
             return this;
+        }
+
+
+        public void AlterarSituacao()
+        {
+            Situacao = Situacao == SituacaoEnum.Ativo ? SituacaoEnum.Inativo : SituacaoEnum.Ativo;
         }
     }
 }
