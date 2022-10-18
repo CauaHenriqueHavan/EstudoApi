@@ -16,7 +16,7 @@ namespace estudo.api.Controllers
             => _clienteService = clienteService;
 
         [HttpPost]
-        public async Task<IActionResult> CriarCliente([FromBody]CadastrarClienteInputModel model)
+        public async Task<IActionResult> CriarCliente([FromBody] CadastrarClienteInputModel model)
         {
             await _clienteService.CriarClienteAsync(model);
 
@@ -30,5 +30,28 @@ namespace estudo.api.Controllers
         [HttpGet("{id}")]
         public async Task<ClienteOutputModel> BuscarClientesIdAsync(short id)
             => await _clienteService.BuscarClientesIdAsync(id);
+
+        [HttpPut]
+        public async Task<IActionResult> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
+        {
+            var result = await _clienteService.AlterarCadastroClienteAsync(model);
+
+            if (!result)
+                return BadRequest(ResourceApi.NaoFoiPossivelAlterarCadastro);
+
+            return Ok(ResourceApi.SituacaoAlteradaComSucesso);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> AlterarSituacaoCliente(short id)
+        {
+            var result = await _clienteService.AlterarSituacaoClienteAsync(id);
+
+            if (!result)
+                return BadRequest(ResourceApi.NaoFoiPossivelAlterarCadastro);
+
+            return Ok(ResourceApi.SituacaoAlteradaComSucesso);
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿using estudo.domain.Entities;
+﻿using estudo.domain.Enums;
 
 namespace estudo.domain.DTO_s
 {
@@ -9,5 +9,6 @@ namespace estudo.domain.DTO_s
         public DateTime DataNascimento { get; set; }
         public string Cpf { get; set; }
         public DateTime DataCriação { get; set; }
+        public SituacaoEnum Situacao { get; set; }
     }
 }
