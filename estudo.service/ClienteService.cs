@@ -48,7 +48,7 @@ namespace estudo.service
         public async Task<ResultViewBaseModel> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
         {
             var cliente  = await _clienteRepository.AlterarCadastroClienteAsync(model);
-            if(cliente == false)
+            if(cliente == null)
                 return AddErros(ResourceService.ClienteNaoEncontrado);
 
             await _uow.CommitAsync();
