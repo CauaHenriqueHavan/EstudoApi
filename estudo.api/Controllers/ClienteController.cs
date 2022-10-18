@@ -40,7 +40,7 @@ namespace estudo.api.Controllers
             if (!result)
                 return BadRequest("Não foi possivel alterar cadastro!");
 
-            return Ok("Alteradi com sucesso!");
+            return Ok("Alterado com sucesso!");
         }
     }
 }
