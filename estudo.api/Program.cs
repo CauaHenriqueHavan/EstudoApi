@@ -17,8 +17,6 @@ builder.Services.AddControllers().AddFluentValidation(
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data source=local.db"));
-builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().WriteTo.File("Logs/arquivo.txt", rollingInterval : RollingInterval.Day).CreateLogger());
-builder.Logging.ClearProviders();
 
 var services = builder.Services;
 var configuration = builder.Configuration;

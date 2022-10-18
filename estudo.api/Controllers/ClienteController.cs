@@ -2,7 +2,6 @@
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
 
 namespace estudo.api.Controllers
 {
