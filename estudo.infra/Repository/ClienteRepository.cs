@@ -70,8 +70,6 @@ namespace estudo.infra.Repository
 
             cliente.AlterarCadastro(model.Nome, model.Sobrenome);
 
-            await _context.SaveChangesAsync();
-
             return true;
         }
 

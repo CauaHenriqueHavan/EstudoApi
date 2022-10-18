@@ -81,9 +81,9 @@ namespace estudo.api {
         /// <summary>
         ///   Looks up a localized string similar to Data de nascimento esta inválida!.
         /// </summary>
-        internal static string DataNascimentoInválida {
+        internal static string DataNascimentoInvalida {
             get {
-                return ResourceManager.GetString("DataNascimentoInválida", resourceCulture);
+                return ResourceManager.GetString("DataNascimentoInvalida", resourceCulture);
             }
         }
         

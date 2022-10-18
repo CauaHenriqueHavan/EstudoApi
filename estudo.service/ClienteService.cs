@@ -25,10 +25,24 @@ namespace estudo.service
             => await _clienteRepository.BuscarClientesIdAsync(id);
 
         public async Task<bool> CriarClienteAsync(CadastrarClienteInputModel model)
-            => await _clienteRepository.CriarClienteAsync(model);
+        {
+            await _clienteRepository.CriarClienteAsync(model);
 
+            await _uow.CommitAsync();
+
+            return true;
+        } 
         public async Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
-            => await _clienteRepository.AlterarCadastroClienteAsync(model);
+        {
+           var cliente =  await _clienteRepository.AlterarCadastroClienteAsync(model);
+            if (cliente == false)
+                return false;
+
+            await _uow.CommitAsync();
+
+            return true;
+        }
+             
 
         public async Task<bool> AlterarSituacaoClienteAsync(short id)
         {

@@ -3,14 +3,13 @@ using estudo.domain.Interfaces.Service;
 using estudo.infra.Auxiliares;
 using estudo.infra.Repository;
 using estudo.service;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace estudo.infraCrossCuting
 {
     public static class CrossDependency
     {
-        public static IServiceCollection SetupDepencencyInjection(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection SetupDepencencyInjection(this IServiceCollection services)
             {
             services.ConfigureServices()
                     .ConfiguringRepositories();
