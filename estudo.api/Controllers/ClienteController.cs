@@ -8,18 +8,15 @@ using System.Net;
 namespace estudo.api.Controllers
 {
     [ApiController]
-    [Route("api/")]
+    [Route("api/[Controller]")]
 
     public class ClienteController : ControllerApi
     {
         private readonly IClienteService _clienteService;
-        private readonly ILogger<ClienteController> _logger;
 
-        public ClienteController(IClienteService clienteService, ILogger<ClienteController> logger)
-        {
-            _clienteService = clienteService;
-            _logger = logger;
-        }
+        public ClienteController(IClienteService clienteService)
+            => _clienteService = clienteService;
+
 
         [HttpPost]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
