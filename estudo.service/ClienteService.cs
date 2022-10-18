@@ -18,8 +18,8 @@ namespace estudo.service
         }
             
 
-        public async Task<ResultViewBaseModel> BuscarClientesAsync()
-            => AddResult(await _clienteRepository.BuscarClientesAsync());
+        public async Task<ResultViewBaseModel> BuscarClientesAsync(BuscarClientesInputModel model)
+            => AddResult(await _clienteRepository.BuscarClientesAsync(model));
 
         public async Task<ResultViewBaseModel> BuscarClientesIdAsync(short id)
             => AddResult(await _clienteRepository.BuscarClientesIdAsync(id));

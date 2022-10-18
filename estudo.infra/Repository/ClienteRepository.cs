@@ -1,5 +1,6 @@
 ﻿using estudo.domain.DTO_s;
 using estudo.domain.DTO_s.InputModels;
+using estudo.domain.DTO_s.OutPutModelAuxiliar;
 using estudo.domain.Entities;
 using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
@@ -15,8 +16,13 @@ namespace estudo.infra.Repository
         public ClienteRepository(AppDbContext context)
             => _context = context;
 
-        public async Task<List<ClienteOutputModel>> BuscarClientesAsync()
-            => await _context.Cliente.Select(x => new ClienteOutputModel
+        public async Task<PaginadoOutputModel<ClienteOutputModel>> BuscarClientesAsync(BuscarClientesInputModel model)
+        {
+            var pagina = model.Pagina ?? 0;
+
+            var query = _context.Cliente.Where(x => x.Situacao == SituacaoEnum.Ativo);
+
+            var dados = await query.Select(x => new ClienteOutputModel
             {
                 Cpf = x.Cpf,
                 DataCriação = DateTime.Now,
@@ -25,7 +31,14 @@ namespace estudo.infra.Repository
                 Sobrenome = x.Sobrenome,
                 Situacao = x.Situacao
             })
+            .Skip(pagina)
+            .Take(model.ObterTotalItens())
             .ToListAsync();
+
+            return new PaginadoOutputModel<ClienteOutputModel>
+                (dados, query.Count(), model.PaginaAtual(), model.ObterTotalItens());
+        }
+
 
         public async Task<ClienteOutputModel> BuscarClientesIdAsync(short id)
             => await _context.Cliente
