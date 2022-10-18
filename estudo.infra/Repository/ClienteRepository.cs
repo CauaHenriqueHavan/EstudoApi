@@ -74,18 +74,18 @@ namespace estudo.infra.Repository
             return result;
         }
 
-        public async Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
+        public async Task<ClienteEntity> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
         {
             var context = _context.Cliente;
 
             var cliente = await context.Where(x => x.Cpf == model.Cpf).FirstOrDefaultAsync();
 
             if (cliente is null)
-                return false;
+                return null;
 
             cliente.AlterarCadastro(model.Nome, model.Sobrenome);;
 
-            return true;
+            return cliente;
         }
 
         public async Task<ClienteEntity> AlterarSituacaoClientesAsync(short id)

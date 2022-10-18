@@ -5,7 +5,7 @@
         Task<ClienteEntity> CriarClienteAsync(CadastrarClienteInputModel model);
         Task<PaginadoOutputModel<ClienteOutputModel>> BuscarClientesAsync(BuscarClientesInputModel model);
         Task<ClienteOutputModel> BuscarClientesIdAsync(short id);
-        Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model);
+        Task<ClienteEntity> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model);
 
         Task<ClienteEntity> AlterarSituacaoClientesAsync(short id);
     }
