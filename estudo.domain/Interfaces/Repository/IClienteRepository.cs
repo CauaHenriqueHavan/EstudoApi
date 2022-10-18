@@ -1,4 +1,9 @@
-﻿namespace estudo.domain.Interfaces.Repository
+﻿using estudo.domain.DTO_s;
+using estudo.domain.DTO_s.InputModels;
+using estudo.domain.DTO_s.OutPutModelAuxiliar;
+using estudo.domain.Entities;
+
+namespace estudo.domain.Interfaces.Repository
 {
     public interface IClienteRepository
     {
