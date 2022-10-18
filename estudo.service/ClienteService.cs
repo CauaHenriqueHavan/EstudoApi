@@ -29,7 +29,7 @@ namespace estudo.service
             if (id <= 0)
                 return false;
 
-            await _clienteRepository.BuscarClientesSituacaoIdAsync(id);
+            await _clienteRepository.AlterarSituacaoClientesAsync(id);
      
             return true;
         }

@@ -11,6 +11,6 @@ namespace estudo.domain.Interfaces.Repository
         Task<ClienteOutputModel> BuscarClientesIdAsync(short id);
         Task<bool> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model);
 
-        Task<ClienteEntity> BuscarClientesSituacaoIdAsync(short id);
+        Task<ClienteEntity> AlterarSituacaoClientesAsync(short id);
     }
 }
