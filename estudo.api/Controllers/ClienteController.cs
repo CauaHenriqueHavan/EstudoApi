@@ -1,5 +1,7 @@
 ﻿using estudo.api.Auxiliares;
 using estudo.domain.Auxiliar;
+using estudo.domain.Common.Requests;
+using estudo.domain.Common.Responses;
 using estudo.domain.DTO_s;
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.DTO_s.OutPutModelAuxiliar;
@@ -16,9 +18,8 @@ namespace estudo.api.Controllers
     {
         private readonly IClienteService _clienteService;
 
-        public ClienteController(IClienteService clienteService)
+        public ClienteController(IClienteService clienteService, IEnderecoService enderecoService)
             => _clienteService = clienteService;
-
 
         [HttpPost]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
@@ -28,17 +29,17 @@ namespace estudo.api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ResultViewModel<PaginadoOutputModel<ClienteOutputModel>>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarClientesAsync([FromQuery] BuscarClientesInputModel model)
-            => Response(await _clienteService.BuscarClientesAsync(model));
+             => Response(await _clienteService.BuscarClientesAsync(model));
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarClientesIdAsync(short id)
-            => Response(await _clienteService.BuscarClientesIdAsync(id));
+             => Response(await _clienteService.BuscarClientesIdAsync(id));
 
         [HttpPut]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
-            => Response(await _clienteService.AlterarCadastroClienteAsync(model));
+             => Response(await _clienteService.AlterarCadastroClienteAsync(model));
 
         [HttpPatch("{id}")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]

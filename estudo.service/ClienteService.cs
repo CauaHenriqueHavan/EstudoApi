@@ -71,7 +71,7 @@ namespace estudo.service
 
             await _uow.CommitAsync();
 
-            await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.SituacaoUsuario));
+            await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.AlteradoUsuario));
 
             return AddResult(true);
         }

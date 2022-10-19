@@ -2,8 +2,6 @@ using estudo.infra.Context;
 using estudo.infraCrossCuting;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
-using Serilog.Events;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +22,6 @@ var configuration = builder.Configuration;
 // Add services to the container.
 services
     .SetupDepencencyInjection(configuration);
-
 
 var app = builder.Build();
 

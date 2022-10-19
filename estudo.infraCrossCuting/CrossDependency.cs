@@ -27,6 +27,7 @@ namespace estudo.infraCrossCuting
         {
                 services.AddTransient<IClienteService, ClienteService>();
                 services.AddScoped<ILogService, LogService>();
+                services.AddTransient<IEnderecoService, EnderecoService>();
 
                 return services;
         }

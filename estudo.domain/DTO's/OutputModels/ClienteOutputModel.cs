@@ -1,4 +1,5 @@
-﻿using estudo.domain.Enums;
+﻿using estudo.domain.Common.Responses;
+using estudo.domain.Enums;
 
 namespace estudo.domain.DTO_s
 {
@@ -10,5 +11,6 @@ namespace estudo.domain.DTO_s
         public DateTime DataNascimento { get; set; }
         public string Cpf { get; set; }
         public SituacaoEnum Situacao { get; set; }
+        public EnderecoCepResponse Endereco { get; set; }
     }
 }

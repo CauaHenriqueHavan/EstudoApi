@@ -20,20 +20,22 @@ namespace estudo.infra.Repository
         {
             var pagina = model.Pagina ?? 0;
 
-            var query = _context.Cliente.Where(x => x.Situacao == SituacaoEnum.Ativo);
+            var query = _context.Cliente;
 
-            var dados = await query.Select(x => new ClienteOutputModel
-            {
-                Id = x.Id,
-                Cpf = x.Cpf,
-                DataNascimento = x.DataNascimento,
-                Nome = x.Nome,
-                Sobrenome = x.Sobrenome,
-                Situacao = x.Situacao
-            })
-            .Skip(pagina)
-            .Take(model.ObterTotalItens())
-            .ToListAsync();
+            var dados = await query
+                        .Where(x => x.Situacao == SituacaoEnum.Ativo)
+                        .Select(x => new ClienteOutputModel
+                                {
+                                    Id = x.Id,
+                                    Cpf = x.Cpf,
+                                    DataNascimento = x.DataNascimento,
+                                    Nome = x.Nome,
+                                    Sobrenome = x.Sobrenome,
+                                    Situacao = x.Situacao
+                                })
+                                .Skip(pagina)
+                                .Take(model.ObterTotalItens())
+                                .ToListAsync();
 
             return new PaginadoOutputModel<ClienteOutputModel>
                 (dados, query.Count(), model.PaginaAtual(), model.ObterTotalItens());

@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "estudo.api", "estudo.api\estudo.api.csproj", "{69032B09-34E0-4EA5-A7CB-4345554F9A3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "estudo.api", "estudo.api\estudo.api.csproj", "{69032B09-34E0-4EA5-A7CB-4345554F9A3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "estudo.domain", "estudo.domain\estudo.domain.csproj", "{EC314CA9-A61B-4B12-99D8-13A4AED11643}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "estudo.domain", "estudo.domain\estudo.domain.csproj", "{EC314CA9-A61B-4B12-99D8-13A4AED11643}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "estudo.infra", "estudo.infra\estudo.infra.csproj", "{D68B216E-EEA2-4456-AC83-D944E3E09FE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "estudo.infra", "estudo.infra\estudo.infra.csproj", "{D68B216E-EEA2-4456-AC83-D944E3E09FE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "estudo.infraCrossCuting", "estudo.infraCrossCuting\estudo.infraCrossCuting.csproj", "{63CDF0DA-CC94-4450-BBE9-43AC3DAECCDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "estudo.infraCrossCuting", "estudo.infraCrossCuting\estudo.infraCrossCuting.csproj", "{63CDF0DA-CC94-4450-BBE9-43AC3DAECCDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "estudo.service", "estudo.service\estudo.service.csproj", "{C4ED20C0-BBCA-4E99-BDB6-E90333C63785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "estudo.service", "estudo.service\estudo.service.csproj", "{C4ED20C0-BBCA-4E99-BDB6-E90333C63785}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{69A12E2B-0FE6-4CDD-9A92-DA6321718654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{69032B09-34E0-4EA5-A7CB-4345554F9A3B} = {69A12E2B-0FE6-4CDD-9A92-DA6321718654}
+		{EC314CA9-A61B-4B12-99D8-13A4AED11643} = {69A12E2B-0FE6-4CDD-9A92-DA6321718654}
+		{D68B216E-EEA2-4456-AC83-D944E3E09FE1} = {69A12E2B-0FE6-4CDD-9A92-DA6321718654}
+		{63CDF0DA-CC94-4450-BBE9-43AC3DAECCDA} = {69A12E2B-0FE6-4CDD-9A92-DA6321718654}
+		{C4ED20C0-BBCA-4E99-BDB6-E90333C63785} = {69A12E2B-0FE6-4CDD-9A92-DA6321718654}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {948EF7B8-FED6-44BA-8368-460D3EB3AAB3}

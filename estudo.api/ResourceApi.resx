@@ -120,6 +120,9 @@
   <data name="CampoVazio" xml:space="preserve">
     <value>O campo '{0}' não pode ser vazio!</value>
   </data>
+  <data name="CepFormatoInvalido" xml:space="preserve">
+    <value>O cep deve conter 8 digitos!</value>
+  </data>
   <data name="CpfInvalido" xml:space="preserve">
     <value>O Cpf inserido é inválido!</value>
   </data>
