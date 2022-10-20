@@ -6,7 +6,6 @@ using estudo.domain.DTO_s.OutPutModelAuxiliar;
 using estudo.domain.Interfaces.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using System.Net;
 
 namespace estudo.api.Controllers
@@ -18,7 +17,7 @@ namespace estudo.api.Controllers
     {
         private readonly IClienteService _clienteService;
 
-        public ClienteController(IClienteService clienteService, IEnderecoService enderecoService)
+        public ClienteController(IClienteService clienteService)
             => _clienteService = clienteService;
 
         [HttpPost]
