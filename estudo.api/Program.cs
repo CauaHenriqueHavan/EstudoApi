@@ -72,12 +72,7 @@ builder.Services.AddSwaggerGen(s =>
             }
         }));
 
-
-var services = builder.Services;
-var configuration = builder.Configuration;
-
-services
-    .SetupDepencencyInjection();
+builder.Services.SetupDepencencyInjection();
 
 // Add services to the container.
 
