@@ -14,7 +14,7 @@ namespace estudo.infraCrossCuting
 {
     public static class CrossDependency
     {
-        public static IServiceCollection SetupDepencencyInjection(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection SetupDepencencyInjection(this IServiceCollection services)
         {
             services.ConfigureServices()
                     .ConfiguringRepositories()
@@ -28,6 +28,7 @@ namespace estudo.infraCrossCuting
                 services.AddTransient<IClienteService, ClienteService>();
                 services.AddScoped<ILogService, LogService>();
                 services.AddTransient<IEnderecoService, EnderecoService>();
+                services.AddTransient<IUsuarioService, UsuarioService>();
 
                 return services;
         }
@@ -35,6 +36,7 @@ namespace estudo.infraCrossCuting
         public static IServiceCollection ConfiguringRepositories(this IServiceCollection services)
             {
                 services.AddTransient<IClienteRepository, ClienteRepository>();
+                services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 
                 return services;
             }

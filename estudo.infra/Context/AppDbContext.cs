@@ -6,6 +6,7 @@ namespace estudo.infra.Context
     public class AppDbContext : DbContext
     {
         public DbSet<ClienteEntity> Cliente { get; set; }
+        public DbSet<UsuarioEntity> Usuario { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
