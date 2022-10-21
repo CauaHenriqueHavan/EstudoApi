@@ -12,6 +12,15 @@ namespace estudo.domain.Entities
         public string Cpf { get; private set; }
         public SituacaoEnum Situacao { get; private set; }
 
+
+        public ClienteEntity(string nome, string sobrenome, DateTime dataNascimento, string cpf, SituacaoEnum situacao)
+        {
+            Nome = nome;
+            Sobrenome = sobrenome;
+            DataNascimento = dataNascimento;
+            Cpf = cpf;
+            Situacao = situacao;
+        }
         public ClienteEntity(short id, string nome, string sobrenome, DateTime dataNascimento, string cpf, SituacaoEnum situacao)
         {
             Id = id;

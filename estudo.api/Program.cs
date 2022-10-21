@@ -20,7 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data source=local.db"));
+//builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data source=DataBaseDB.db"));
 
 builder.Services.AddControllersWithViews();
 

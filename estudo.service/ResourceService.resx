@@ -129,4 +129,7 @@
   <data name="IdInvalido" xml:space="preserve">
     <value>ID informado é inválido !</value>
   </data>
+  <data name="ProdutoNaoEncontrado" xml:space="preserve">
+    <value>Não foi encontrado nenhum produto!</value>
+  </data>
 </root>
