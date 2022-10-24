@@ -97,6 +97,15 @@ namespace estudo.api {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Id informado é inválido!.
+        /// </summary>
+        internal static string IdInvalido {
+            get {
+                return ResourceManager.GetString("IdInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Não foi possivel alterar cadastro.
         /// </summary>
         internal static string NaoFoiPossivelAlterarCadastro {
