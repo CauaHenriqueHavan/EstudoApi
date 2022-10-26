@@ -2,11 +2,9 @@
 using estudo.domain.DTO_s.OutPutModelAuxiliar;
 using estudo.domain.DTO_s.OutputModels;
 using estudo.domain.DTO_s.OutputModels.Auxiliares;
-using estudo.domain.Entities;
 using estudo.domain.Interfaces.Repository;
 using estudo.infra.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Text;
 
 namespace estudo.infra.Repository
 {

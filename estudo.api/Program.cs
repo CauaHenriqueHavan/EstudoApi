@@ -1,10 +1,7 @@
-using AutoMapper;
 using estudo.domain.Common;
-using estudo.infra.Context;
 using estudo.infraCrossCuting;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;

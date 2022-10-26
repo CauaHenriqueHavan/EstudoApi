@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using estudo.domain.Auxiliar;
-using estudo.domain.DTO_s;
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
