@@ -1,4 +1,6 @@
-﻿using estudo.domain.Auxiliar;
+﻿using AutoMapper;
+using estudo.domain.Auxiliar;
+using estudo.domain.DTO_s;
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
@@ -14,17 +16,20 @@ namespace estudo.service
         private readonly IClienteRepository _clienteRepository;
         private readonly IUnitOfWork<AppDbContext> _uow;
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public ClienteService(IClienteRepository clienteRepository, IUnitOfWork<AppDbContext> uow, IMediator mediator)
+        public ClienteService(IClienteRepository clienteRepository, IUnitOfWork<AppDbContext> uow, IMediator mediator, IMapper mapper)
         {
             _clienteRepository = clienteRepository;
             _uow = uow;
             _mediator = mediator;
+            _mapper = mapper;
         }
 
 
         public async Task<ResultViewBaseModel> BuscarClientesAsync(BuscarClientesInputModel model)
             => AddResult(await _clienteRepository.BuscarClientesAsync(model));
+
 
         public async Task<ResultViewBaseModel> BuscarClientesIdAsync(short id)
             => AddResult(await _clienteRepository.BuscarClientesIdAsync(id));

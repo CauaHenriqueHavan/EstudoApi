@@ -1,5 +1,4 @@
-﻿using estudo.domain.Common.Responses;
-using estudo.domain.Enums;
+﻿using estudo.domain.Enums;
 
 namespace estudo.domain.DTO_s
 {

@@ -4,6 +4,7 @@ using estudo.domain.Interfaces.Repository;
 using estudo.domain.Interfaces.Service;
 using estudo.infra.Auxiliares;
 using estudo.infra.Context;
+using estudo.infra.Mapper;
 using estudo.infra.Repository;
 using estudo.service;
 using estudo.service.Events.Notification;
@@ -19,7 +20,8 @@ namespace estudo.infraCrossCuting
             services.ConfigureServices()
                     .ConfiguringRepositories()
                     .AddMediatR(typeof(LogUsuarioNotification))
-                    .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+                    .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>))
+                    .AddAutoMapper(typeof(AutoMapperConfig));
 
             return services;
         }

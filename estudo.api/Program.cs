@@ -1,3 +1,4 @@
+using AutoMapper;
 using estudo.domain.Common;
 using estudo.infra.Context;
 using estudo.infraCrossCuting;
