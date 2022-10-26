@@ -15,14 +15,12 @@ namespace estudo.service
         private readonly IClienteRepository _clienteRepository;
         private readonly IUnitOfWork<AppDbContext> _uow;
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
 
-        public ClienteService(IClienteRepository clienteRepository, IUnitOfWork<AppDbContext> uow, IMediator mediator, IMapper mapper)
+        public ClienteService(IClienteRepository clienteRepository, IUnitOfWork<AppDbContext> uow, IMediator mediator)
         {
             _clienteRepository = clienteRepository;
             _uow = uow;
             _mediator = mediator;
-            _mapper = mapper;
         }
 
 
@@ -42,7 +40,6 @@ namespace estudo.service
                await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.UsuarioCriado));
 
                 return AddResult(ResourceService.ClienteCriado);
-                
             }
 
             return AddErros(ResourceService.ErroCriarCliente);

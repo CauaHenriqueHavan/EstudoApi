@@ -98,6 +98,5 @@ namespace estudo.infra.Repository
 
             return cliente;
         }
-
     }
 }

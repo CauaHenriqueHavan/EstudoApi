@@ -15,7 +15,6 @@ namespace estudo.infra.Repository
         public ProdutoRepository(AppDbContext context)
             => _context = context;
 
-
         public async Task <PaginadoOutputModel<ProdutosOutputModel>> BuscarProdutosAsync(BuscarProdutosInputModel model)
         {
             var pagina = model.Pagina ?? 0;

@@ -21,8 +21,7 @@ namespace estudo.api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(ResultViewModel<List<ProdutosOutputModel>>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarProduto([FromQuery] BuscarProdutosInputModel model)
-        {
-            return Response(await _produtoService.BuscarProdutosAsync(model));
-        }
+            => Response(await _produtoService.BuscarProdutosAsync(model));
+
     }
 }

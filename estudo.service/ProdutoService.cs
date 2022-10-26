@@ -12,7 +12,6 @@ namespace estudo.service
         public ProdutoService(IProdutoRepository produtoRepository)
             => _produtoRepository = produtoRepository;
 
-
         public async Task<ResultViewBaseModel> BuscarProdutosAsync(BuscarProdutosInputModel model)
         {
             var produtos = await _produtoRepository.BuscarProdutosAsync(model);
