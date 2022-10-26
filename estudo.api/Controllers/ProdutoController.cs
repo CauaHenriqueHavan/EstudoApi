@@ -17,11 +17,9 @@ namespace estudo.api.Controllers
         public ProdutoController(IProdutoService produtoService)
             => _produtoService = produtoService;
 
-
         [HttpGet]
         [ProducesResponseType(typeof(ResultViewModel<List<ProdutosOutputModel>>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarProduto([FromQuery] BuscarProdutosInputModel model)
             => Response(await _produtoService.BuscarProdutosAsync(model));
-
     }
 }
