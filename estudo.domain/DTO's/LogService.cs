@@ -19,9 +19,9 @@ namespace estudo.domain.Common
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "20.72.109.174",
-                UserName = "super-app-uuR0bHpHOBu04KCfflvONqrDpRCR4aDk",
-                Password = "cz7t1qUkM4uxuiC7Ih63ul8xaGJThZHM0KH",
+                HostName = "",
+                UserName = "",
+                Password = "",
                 VirtualHost = "/"
             };
 
