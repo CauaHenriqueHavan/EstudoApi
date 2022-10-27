@@ -2,8 +2,11 @@
 using estudo.domain.DTO_s.OutPutModelAuxiliar;
 using estudo.domain.DTO_s.OutputModels;
 using estudo.domain.DTO_s.OutputModels.Auxiliares;
+using estudo.domain.Entities;
+using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
 using estudo.infra.Context;
+using estudo.infra.Repository.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace estudo.infra.Repository
@@ -51,5 +54,22 @@ namespace estudo.infra.Repository
 
             return new PaginadoOutputModel<ProdutosOutputModel> (result, result.Count, model.PaginaAtual(), model.ObterTotalItens());
         }
+
+        public async Task<bool> CriarProdutoAsync(CriarProdutoInputModel model)
+        {
+            var id = _context.Produto.Select(x => x.Id).Max();
+
+            var cliente = new ProdutoEntity((short)id++, model.Nome, model.Imagem.ImagemToString(), model.Preco, SituacaoEnum.Ativo, model.Fornecedor);
+
+            if (cliente == null)
+                return false;
+
+            await _context.AddAsync(cliente);
+
+            return true;
+        }
+
+        public async Task<string> BuscarImagemProdutoAsync(short id)
+            => await _context.Produto.Where(x => x.Id == id).Select(x => x.Imagem).FirstOrDefaultAsync();
     }
 }

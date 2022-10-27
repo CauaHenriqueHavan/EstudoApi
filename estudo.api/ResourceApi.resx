@@ -138,4 +138,7 @@
   <data name="SituacaoAlteradaComSucesso" xml:space="preserve">
     <value>Situação Alterada com sucesso !</value>
   </data>
+  <data name="ValorInvalido" xml:space="preserve">
+    <value>Valor inserido é menor ou igual a zero!</value>
+  </data>
 </root>

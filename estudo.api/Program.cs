@@ -18,8 +18,6 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data source=DataBaseDB.db"));
-
 builder.Services.AddControllersWithViews();
 
 var key = Encoding.ASCII.GetBytes(Settings.Secret);

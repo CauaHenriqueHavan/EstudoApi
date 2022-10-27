@@ -7,5 +7,7 @@ namespace estudo.domain.Interfaces.Repository
     public interface IProdutoRepository
     {
         Task<PaginadoOutputModel<ProdutosOutputModel>> BuscarProdutosAsync(BuscarProdutosInputModel model);
+        Task<bool> CriarProdutoAsync(CriarProdutoInputModel model);
+        Task<string> BuscarImagemProdutoAsync(short id);
     }
 }

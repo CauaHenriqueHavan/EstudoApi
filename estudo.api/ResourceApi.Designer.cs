@@ -122,5 +122,14 @@ namespace estudo.api {
                 return ResourceManager.GetString("SituacaoAlteradaComSucesso", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Valor inserido é menor ou igual a zero!.
+        /// </summary>
+        internal static string ValorInvalido {
+            get {
+                return ResourceManager.GetString("ValorInvalido", resourceCulture);
+            }
+        }
     }
 }
