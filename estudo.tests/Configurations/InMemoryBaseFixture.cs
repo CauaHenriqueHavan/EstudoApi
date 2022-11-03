@@ -1,23 +1,30 @@
-﻿using estudo.infra.Context;
+﻿using estudo.infraCrossCuting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace estudo.tests.Configurations
 {
-    public class InMemoryBaseFixture : InMemoryBaseFixture, IDisposable
+    public class InMemoryBaseFixture : IDisposable
     {
-        private readonly AppDbContext
-        public InMemoryBaseFixture() : base(Path.Combine("estudo.api", "appsettings.json"))
+        protected IServiceProvider ServiceProvider { get; set; }
+        protected IServiceCollection Service { get; }
+        protected IConfiguration Configuration { get; }
+
+        public InMemoryBaseFixture()
         {
-            
+            DadosFixture.MockBanco();
+
+            Service.SetupDepencencyInjection().AddSingleton(Configuration);
         }
 
-        private void IniciarContexto()
+        public T GetService<T>()
         {
-
+            return ServiceProvider.GetService<T>();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            DadosFixture.MockBanco();
         }
     }
 }

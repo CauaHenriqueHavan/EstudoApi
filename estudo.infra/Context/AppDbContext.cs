@@ -14,10 +14,6 @@ namespace estudo.infra.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ClienteEntity>().HasData(new ClienteEntity
-            (
-               1, "caua", "henrique", DateTime.Now.AddYears(-20), "131.112.249-44", 0
-            ));
         }
 
     }

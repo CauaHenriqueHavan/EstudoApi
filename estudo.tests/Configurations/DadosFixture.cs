@@ -1,31 +1,27 @@
-﻿using estudo.domain.DTO_s;
-using estudo.domain.DTO_s.InputModels;
+﻿using estudo.domain.Entities;
 using estudo.domain.Enums;
+using estudo.infra.Context;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 namespace estudo.tests.Configurations
 {
-    public static  class DadosFixture
-    {
-        #region GerarObjeto
+    public static class DadosFixture
+    {   
+        public static void MockBanco()
+        {
+            var connection = new SqliteConnection("DataSource=:memory:");
+            connection.Open();
 
-        public static CadastrarClienteInputModel GerarObjeto_CadastrarClienteInputModelSucesso()
-            => new("jose", "costa", DateTime.Now.AddYears(-18), "122.114.442-12");
+           var options = new DbContextOptionsBuilder<AppDbContext>().UseSqlite(connection).Options;
 
-        public static CadastrarClienteInputModel GerarObjeto_CadastrarClienteInputModelInSucesso()
-           => new("jose", "costa", DateTime.Now.AddYears(-18), "12211444212");
+            var context = new AppDbContext();
+            
+           context.Database.EnsureCreated();
+            
 
-        #endregion
-
-        #region GerarLista
-
-        public static List<ClienteOutputModel> GerarLista_ObterClientes()
-            => new()
-            {
-                new(1,"carlos", "alberto",DateTime.Now.AddYears(-18), "114.212.111-48", SituacaoEnum.Ativo),
-                new(2,"pericles", "araujo",DateTime.Now.AddYears(-23), "134.612.121-18", SituacaoEnum.Ativo),
-                new(3,"jojo", "todynho",DateTime.Now.AddYears(-48), "224.242.321-45", SituacaoEnum.Ativo)
-            };
-
-        #endregion
+            context.Cliente.Add(new ClienteEntity("caua", "henrique", DateTime.Now.AddYears(-19),"131.111.224-48", SituacaoEnum.Ativo));
+            context.SaveChanges();
+        }
     }
 }
