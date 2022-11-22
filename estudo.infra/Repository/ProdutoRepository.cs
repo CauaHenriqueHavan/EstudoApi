@@ -23,20 +23,20 @@ namespace estudo.infra.Repository
             var pagina = model.Pagina ?? 0;
 
             var query = from f in _context.Fornecedor
-                              join p in _context.Produto on f.Id equals p.Fornecedor
-                              select new ProdutosOutputModel
-                              {
-                                  Id = p.Id,
-                                  Fornecedor = new FornecedorOutputModel
-                                  {
-                                      Id = f.Id,
-                                      Nome = f.Nome,
-                                      Situacao = f.Situacao
-                                  },
-                                  Situacao = p.Situacao,
-                                  Nome = p.Nome,
-                                  Preco = p.Preco
-                              };
+                             join p in _context.Produto on f.Id equals p.Fornecedor
+                             select new ProdutosOutputModel
+                             {
+                                 Id = p.Id,
+                                 Fornecedor = new FornecedorOutputModel
+                                 {
+                                     Id = f.Id,
+                                     Nome = f.Nome,
+                                     Situacao = f.Situacao
+                                 },
+                                 Situacao = p.Situacao,
+                                 Nome = p.Nome,
+                                 Preco = p.Preco
+                             };
 
             if (model.Id != null)
                 query = query.Where(x => x.Id == model.Id);
@@ -48,7 +48,7 @@ namespace estudo.infra.Repository
                 query = query.Where(x => x.Fornecedor.Id == model.Fornecedor);
 
 
-            var result =  await query.Skip(pagina)
+            var result = await query.Skip(pagina)
             .Take(model.ObterTotalItens())
             .ToListAsync();
 

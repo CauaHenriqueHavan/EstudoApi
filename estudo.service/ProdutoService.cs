@@ -1,5 +1,4 @@
-﻿using Abp.Domain.Uow;
-using estudo.domain.Auxiliar;
+﻿using estudo.domain.Auxiliar;
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.Interfaces.Repository;
 using estudo.domain.Interfaces.Service;
@@ -18,7 +17,7 @@ namespace estudo.service
             _uow = uow;
         }
 
-            public async Task<ResultViewBaseModel> BuscarProdutosAsync(BuscarProdutosInputModel model)
+        public async Task<ResultViewBaseModel> BuscarProdutosAsync(BuscarProdutosInputModel model)
         {
             var produtos = await _produtoRepository.BuscarProdutosAsync(model);
 
