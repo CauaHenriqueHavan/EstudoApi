@@ -13,7 +13,6 @@ namespace estudo.api.Controllers
     public class EnderecoController : ControllerApi
     {
         private readonly IEnderecoService _enderecoService;
-
         public EnderecoController(IEnderecoService enderecoService)
             => _enderecoService = enderecoService;
 

@@ -4,7 +4,6 @@
     {
         public string ApiKey { get; set; }
 
-
         public ApiSettings() { }
         public ApiSettings(string apiKey)
             => ApiKey = apiKey;

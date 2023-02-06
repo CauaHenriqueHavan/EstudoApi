@@ -9,12 +9,16 @@ namespace estudo.infra.Context
         public DbSet<ProdutoEntity> Produto { get; set; }
         public DbSet<FornecedorEntity> Fornecedor { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseSqlite("DataSource=local.db");
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
+        {
+            Database.EnsureCreated();
+        }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //    => optionsBuilder.UseSqlite("DataSource=local.db");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         }
-
     }
 }

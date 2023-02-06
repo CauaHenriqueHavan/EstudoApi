@@ -41,8 +41,7 @@ namespace estudo.domain.Entities
 
 
         public void AlterarSituacao()
-        {
-            Situacao = Situacao == SituacaoEnum.Ativo ? SituacaoEnum.Inativo : SituacaoEnum.Ativo;
-        }
+            => Situacao = Situacao == SituacaoEnum.Ativo ? SituacaoEnum.Inativo : SituacaoEnum.Ativo;
+        
     }
 }

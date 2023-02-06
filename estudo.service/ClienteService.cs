@@ -22,7 +22,6 @@ namespace estudo.service
             _mediator = mediator;
         }
 
-
         public async Task<ResultViewBaseModel> BuscarClientesAsync(BuscarClientesInputModel model)
             => AddResult(await _clienteRepository.BuscarClientesAsync(model));
 
@@ -33,14 +32,12 @@ namespace estudo.service
         {
            var cliente = await _clienteRepository.CriarClienteAsync(model);
 
-            if (cliente != null)
-            {
+            if (cliente == null)
+                return AddErros(ResourceService.ErroCriarCliente);
+
                await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.UsuarioCriado));
 
-                return AddResult(ResourceService.ClienteCriado);
-            }
-
-            return AddErros(ResourceService.ErroCriarCliente);
+               return AddResult(ResourceService.ClienteCriado);
         }
         
 

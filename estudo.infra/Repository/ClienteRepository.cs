@@ -80,16 +80,16 @@ namespace estudo.infra.Repository
             if (cliente is null)
                 return null;
 
-            cliente.AlterarCadastro(model.Nome, model.Sobrenome);;
+            cliente.AlterarCadastro(model.Nome, model.Sobrenome);
 
             return cliente;
         }
 
         public async Task<ClienteEntity> AlterarSituacaoClientesAsync(short id)
         {
-            var teste = _context.Cliente;
+            var context = _context.Cliente;
 
-            var cliente =  await teste.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var cliente =  await context.Where(x => x.Id == id).FirstOrDefaultAsync();
 
             if (cliente is null)
                 return null;

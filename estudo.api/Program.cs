@@ -8,21 +8,21 @@ using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var services = builder.Services;
 // Add services to the container.
 
-builder.Services.AddControllers().AddFluentValidation(
+services.AddControllers().AddFluentValidation(
     c => c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
 
-builder.Services.AddEndpointsApiExplorer();
+services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+services.AddSwaggerGen();
 
-builder.Services.AddControllersWithViews();
+services.AddControllersWithViews();
 
 var key = Encoding.ASCII.GetBytes(Settings.Secret);
 
-builder.Services.AddAuthentication(x =>
+services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -40,7 +40,7 @@ builder.Services.AddAuthentication(x =>
         };
     });
 
-builder.Services.AddSwaggerGen(s =>
+services.AddSwaggerGen(s =>
     s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -51,7 +51,18 @@ builder.Services.AddSwaggerGen(s =>
         Scheme = "bearer"
     }));
 
-builder.Services.AddSwaggerGen(s =>
+services.AddSwaggerGen(c =>
+ {
+     c.SwaggerDoc("v1",
+         new OpenApiInfo
+         {
+             Title = "Aplicação Teste",
+             Version = "v1",
+             Description = "POC para teste de documentação"
+         });
+ });
+
+ services.AddSwaggerGen(s =>
     s.AddSecurityRequirement(
         new OpenApiSecurityRequirement
         {
@@ -68,7 +79,8 @@ builder.Services.AddSwaggerGen(s =>
             }
         }));
 
-builder.Services.SetupDepencencyInjection();
+services.SetupDepencencyInjection(builder.Configuration);
+
 
 // Add services to the container.
 

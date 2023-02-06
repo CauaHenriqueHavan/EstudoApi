@@ -1,20 +1,37 @@
-﻿using estudo.infraCrossCuting;
-using Microsoft.Extensions.Configuration;
+﻿using estudo.domain.Common.Interfaces;
+using estudo.domain.DTO_s.Config;
+using estudo.domain.Interfaces.Service;
+using estudo.infra.Context;
+using estudo.infraCrossCuting;
+using estudo.service;
+using estudo.tests.Configurations.MockResponse;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Moq;
+using static estudo.tests.Configurations.ContextoFactory;
+using static estudo.tests.Configurations.DadosFixture;
 
 namespace estudo.tests.Configurations
 {
-    public class InMemoryBaseFixture : IDisposable
+    public class InMemoryBaseFixture : BaseFixture, IDisposable
     {
-        protected IServiceProvider ServiceProvider { get; set; }
-        protected IServiceCollection Service { get; }
-        protected IConfiguration Configuration { get; }
+        private AppDbContext _context;
 
-        public InMemoryBaseFixture()
+        public InMemoryBaseFixture() : base(Path.Combine(@"C:\Users\116890\source\repos\API DE ESTUDO\estudo.tests\Configurations\appsettings.json"))
         {
-            DadosFixture.MockBanco();
+            Service.SetupDepencencyInjection(Configuration)
+                   .AddSingleton(Configuration);
 
-            Service.SetupDepencencyInjection().AddSingleton(Configuration);
+            IniciarContexto();
+
+            PopulaDatabase();
+
+            MockLog();
+
+            ConfigurarEnderecoApiService();
+
+            BuildEscopo();
         }
 
         public T GetService<T>()
@@ -22,9 +39,40 @@ namespace estudo.tests.Configurations
             return ServiceProvider.GetService<T>();
         }
 
+        private void ConfigurarEnderecoApiService()
+        {
+            var enderecoApiSettings = Configuration.GetSection("EnderecoApiSettings");
+            var enderecoApiMock = new EnderecoApiMock(enderecoApiSettings["UrlBase"]);
+            var configuracaoEndereco = Options.Create(new EnderecoApiSettings(enderecoApiSettings["EndpointBuscarEndereco"]));
+
+            Service.AddSingleton<IEnderecoService>(new EnderecoService(enderecoApiMock.HttpClient, configuracaoEndereco));
+        }
+
+        private void MockLog()
+        {
+            var mockLogService = new Mock<ILogService>();
+            Service.AddSingleton(mockLogService.Object);
+
+            var mediator = new Mock<IMediator>();
+            Service.AddSingleton(mediator.Object);
+        }
+
+        private void IniciarContexto()
+        {
+            _context = CriarContexto<AppDbContext>();
+            Service.AddSingleton(_context);
+        }
+
+        private void PopulaDatabase()
+        {
+            _context.Add(GerarClienteEntity());
+            _context.SaveChanges();
+        }
+
         public void Dispose()
         {
-            DadosFixture.MockBanco();
+            Scope?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

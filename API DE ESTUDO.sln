@@ -17,7 +17,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{69A12E2B-0FE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Teste", "Teste", "{0B1C4541-5901-4DE9-AAF0-A10673722C40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "estudo.tests", "estudo.tests\estudo.tests.csproj", "{72D7F52F-F064-445D-88ED-BE069CD4C42D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "estudo.tests", "estudo.tests\estudo.tests.csproj", "{72D7F52F-F064-445D-88ED-BE069CD4C42D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{034259D4-CA7F-4960-AAD4-413499DB4D4D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
