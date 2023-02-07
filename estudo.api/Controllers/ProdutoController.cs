@@ -18,20 +18,21 @@ namespace estudo.api.Controllers
         public ProdutoController(IProdutoService produtoService)
             => _produtoService = produtoService;
 
-        [Authorize(Roles = "gerente,atendente")]
         [HttpGet]
+        [Authorize(Roles = "gerente,atendente")]
         [ProducesResponseType(typeof(ResultViewModel<List<ProdutosOutputModel>>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarProduto([FromQuery] BuscarProdutosInputModel model)
             => Response(await _produtoService.BuscarProdutosAsync(model));
-        [Authorize(Roles = "gerente")]
+        
         [HttpPost]
+        [Authorize(Roles = "gerente")]
         [ProducesResponseType(typeof(ResultViewModel<bool>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> CriarProduto([FromForm] CriarProdutoInputModel model)
             => Response(await _produtoService.CriarProdutoAsync(model));
 
-        [Authorize(Roles = "gerente,atendente")]
-        [Route("/BuscarImagemProduto")]
         [HttpGet]
+        [Route("/BuscarImagemProduto")]
+        [Authorize(Roles = "gerente,atendente")]
         [ProducesResponseType(typeof(ResultViewModel<string>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarImagemProduto([FromQuery] short id)
             => Response(await _produtoService.BuscarImagemProdutoAsync(id));
