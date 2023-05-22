@@ -16,9 +16,9 @@ namespace estudo.api.Controllers
         public EnderecoController(IEnderecoService enderecoService)
             => _enderecoService = enderecoService;
 
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(typeof(ResultViewModel<EnderecoCepResponse>), (short)HttpStatusCode.OK)]
-        public async Task<IActionResult> BuscarCep([FromBody] EnderecoCepRequest model)
+        public async Task<IActionResult> BuscarCep([FromQuery] EnderecoCepRequest model)
             => Response(await _enderecoService.BuscarCepAsync(model));
     }
 }

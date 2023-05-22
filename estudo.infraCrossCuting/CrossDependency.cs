@@ -31,9 +31,9 @@ namespace estudo.infraCrossCuting
         }
         public static IServiceCollection ConfigureServices(this IServiceCollection services)
         {
+                services.AddTransient<EnderecoApiSettings>();
                 services.AddScoped<ILogService, LogService>();
                 services.AddTransient<IClienteService, ClienteService>();
-                services.AddTransient<IEnderecoService, EnderecoService>();
                 services.AddTransient<IProdutoService, ProdutoService>();
 
                 services.AddDbContext<AppDbContext>(x => x.UseSqlite("Data source=local.db"));

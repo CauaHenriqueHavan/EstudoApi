@@ -8,15 +8,19 @@
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Remove="Log\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Abp" Version="7.4.0" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
     <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="4.0.20710" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
@@ -32,6 +36,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ResourceService.resx</DependentUpon>
     </Compile>
+    <Compile Remove="Log\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +44,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Remove="Log\**" />
   </ItemGroup>
 
 </Project>

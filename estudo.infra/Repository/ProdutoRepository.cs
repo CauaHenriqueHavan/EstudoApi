@@ -47,12 +47,11 @@ namespace estudo.infra.Repository
             if (model.Fornecedor != null)
                 query = query.Where(x => x.Fornecedor.Id == model.Fornecedor);
 
-
             var result = await query.Skip(pagina)
             .Take(model.ObterTotalItens())
             .ToListAsync();
 
-            return new PaginadoOutputModel<ProdutosOutputModel> (result, result.Count, model.PaginaAtual(), model.ObterTotalItens());
+            return new PaginadoOutputModel<ProdutosOutputModel>(result, result.Count, model.PaginaAtual(), model.ObterTotalItens());
         }
 
         public async Task<bool> CriarProdutoAsync(CriarProdutoInputModel model)

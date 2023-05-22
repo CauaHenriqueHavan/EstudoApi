@@ -1,3 +1,4 @@
+using estudo.api.Middleare;
 using estudo.domain.Common;
 using estudo.infraCrossCuting;
 using FluentValidation.AspNetCore;
@@ -19,6 +20,8 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
 services.AddControllersWithViews();
+
+services.AddControllers(opt => opt.Filters.Add(typeof(ApiExceptionFilteAttribute)));
 
 var key = Encoding.ASCII.GetBytes(Settings.Secret);
 

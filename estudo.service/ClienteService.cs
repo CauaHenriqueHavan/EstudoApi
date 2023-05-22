@@ -1,5 +1,6 @@
 ﻿using estudo.domain.Auxiliar;
 using estudo.domain.DTO_s.InputModels;
+using estudo.domain.Entities;
 using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
 using estudo.domain.Interfaces.Service;
@@ -22,7 +23,7 @@ namespace estudo.service
             _mediator = mediator;
         }
 
-        public async Task<ResultViewBaseModel> BuscarClientesAsync(BuscarClientesInputModel model)
+        public async ValueTask<ResultViewBaseModel> BuscarClientesAsync(BuscarClientesInputModel model)
             => AddResult(await _clienteRepository.BuscarClientesAsync(model));
 
         public async Task<ResultViewBaseModel> BuscarClientesIdAsync(short id)
@@ -30,21 +31,21 @@ namespace estudo.service
 
         public async Task<ResultViewBaseModel> CriarClienteAsync(CadastrarClienteInputModel model)
         {
-           var cliente = await _clienteRepository.CriarClienteAsync(model);
+            //var cliente = await _clienteRepository.CriarClienteAsync(model);
+            ClienteEntity cliente = null;
 
-            if (cliente == null)
+            if (cliente.Id > 0)
                 return AddErros(ResourceService.ErroCriarCliente);
 
-               await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.UsuarioCriado));
+            await _mediator.Publish(new LogUsuarioNotification(cliente.Id, TipoEventoEnum.UsuarioCriado));
 
-               return AddResult(ResourceService.ClienteCriado);
+            return AddResult(ResourceService.ClienteCriado);
         }
-        
 
         public async Task<ResultViewBaseModel> AlterarCadastroClienteAsync(AlterarCadastroClienteInputModel model)
         {
-            var cliente  = await _clienteRepository.AlterarCadastroClienteAsync(model);
-            if(cliente == null)
+            var cliente = await _clienteRepository.AlterarCadastroClienteAsync(model);
+            if (cliente == null)
                 return AddErros(ResourceService.ClienteNaoEncontrado);
 
             await _uow.CommitAsync();
@@ -53,7 +54,6 @@ namespace estudo.service
 
             return AddResult(true);
         }
-           
 
         public async Task<ResultViewBaseModel> AlterarSituacaoClienteAsync(short id)
         {

@@ -12,7 +12,7 @@ namespace estudo.api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-
+    [AllowAnonymous]
     public class ClienteController : ControllerApi
     {
         private readonly IClienteService _clienteService;

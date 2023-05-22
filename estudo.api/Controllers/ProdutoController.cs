@@ -31,7 +31,7 @@ namespace estudo.api.Controllers
             => Response(await _produtoService.CriarProdutoAsync(model));
 
         [HttpGet]
-        [Route("/BuscarImagemProduto")]
+        [Route("BuscarImagemProduto")]
         [Authorize(Roles = "gerente,atendente")]
         [ProducesResponseType(typeof(ResultViewModel<string>), (short)HttpStatusCode.OK)]
         public async Task<IActionResult> BuscarImagemProduto([FromQuery] short id)

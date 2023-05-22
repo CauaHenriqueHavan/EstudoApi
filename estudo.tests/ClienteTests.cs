@@ -1,6 +1,10 @@
+using estudo.domain.Auxiliar;
+using estudo.domain.DTO_s;
 using estudo.domain.DTO_s.InputModels;
 using estudo.domain.Interfaces.Service;
+using estudo.domain.Paginado;
 using estudo.tests.Configurations;
+using Shouldly;
 using Xunit;
 
 namespace estudo.tests
@@ -22,8 +26,11 @@ namespace estudo.tests
             var input = new BuscarClientesInputModel();
 
             var result = await _fixture.BuscarClientesAsync(input);
+            var resultado = result as ResultViewModel<PaginadoOutput<ClienteOutputModel>>;
 
-            Assert.True(result.Success);
+            result.Success.ShouldBeTrue();
+            resultado.Result.Dados.Count().ShouldBeGreaterThan(5);
+            
         }
 
         [Trait("TestesIntegrados", "ClienteTeste")]

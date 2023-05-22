@@ -45,7 +45,7 @@ namespace estudo.tests.Configurations
             var enderecoApiMock = new EnderecoApiMock(enderecoApiSettings["UrlBase"]);
             var configuracaoEndereco = Options.Create(new EnderecoApiSettings(enderecoApiSettings["EndpointBuscarEndereco"]));
 
-            Service.AddSingleton<IEnderecoService>(new EnderecoService(enderecoApiMock.HttpClient, configuracaoEndereco));
+            Service.AddSingleton<IEnderecoService>(new EnderecoService(enderecoApiMock.HttpClient, configuracaoEndereco.Value));
         }
 
         private void MockLog()
@@ -65,7 +65,7 @@ namespace estudo.tests.Configurations
 
         private void PopulaDatabase()
         {
-            _context.Add(GerarClienteEntity());
+            _context.AddRange(GerarClienteEntity());
             _context.SaveChanges();
         }
 

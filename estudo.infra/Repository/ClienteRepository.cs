@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using estudo.domain.DTO_s;
 using estudo.domain.DTO_s.InputModels;
-using estudo.domain.DTO_s.OutPutModelAuxiliar;
 using estudo.domain.Entities;
 using estudo.domain.Enums;
 using estudo.domain.Interfaces.Repository;
+using estudo.domain.Paginado;
 using estudo.infra.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,24 +18,9 @@ namespace estudo.infra.Repository
         public ClienteRepository(AppDbContext context, IMapper mapper)
             => (_context, _mapper) = (context, mapper);
 
-        public async Task<PaginadoOutputModel<ClienteOutputModel>> BuscarClientesAsync(BuscarClientesInputModel model)
-        {
-            var pagina = model.Pagina ?? 0;
-
-            var query = _context.Cliente;
-
-            var clientes = await query
-                        .Where(x => x.Situacao == SituacaoEnum.Ativo)
-                        .Skip(pagina)
-                        .Take(model.ObterTotalItens())
-                        .ToListAsync();
-
-            var dados = _mapper.Map<List<ClienteOutputModel>>(clientes);
-
-            return new PaginadoOutputModel<ClienteOutputModel>
-                (dados, query.Count(), model.PaginaAtual(), model.ObterTotalItens());
-        }
-
+        public async Task<PaginadoOutput<ClienteOutputModel>> BuscarClientesAsync(BuscarClientesInputModel model)
+            => _context.Cliente
+                       .WithPaginationAsync<ClienteEntity, ClienteOutputModel>( x => x, 1);
 
         public async Task<ClienteOutputModel> BuscarClientesIdAsync(short id)
             => await _context.Cliente
